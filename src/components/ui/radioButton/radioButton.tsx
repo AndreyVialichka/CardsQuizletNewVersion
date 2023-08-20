@@ -1,14 +1,13 @@
 import * as Checkbox from '@radix-ui/react-checkbox'
-import { CheckIcon } from '@radix-ui/react-icons'
 
-import s from './checkbox.module.scss'
+import s from './radionButton.module.scss'
 
-export type CheckBoxProps = {
+export type radionButtonProps = {
   checked?: boolean
   className?: string
 }
 
-export const CheckboxDemo = (props: CheckBoxProps) => {
+export const radionButton = (props: radionButtonProps) => {
   const { checked, className = 'default' } = props
 
   return (
@@ -16,7 +15,7 @@ export const CheckboxDemo = (props: CheckBoxProps) => {
       <div className={s[className]}>
         <Checkbox.Root className={s.CheckboxRoot} checked={checked} id="c1">
           <Checkbox.Indicator className={s.CheckboxIndicator}>
-            <CheckIcon />
+            <div className={s.innerCircle}></div>
           </Checkbox.Indicator>
         </Checkbox.Root>
       </div>

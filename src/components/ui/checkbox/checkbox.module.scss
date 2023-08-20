@@ -1,42 +1,49 @@
-
-
-/* reset */
 button {
   all: unset;
 }
 
 .default{
+  width: 43px;
+  height: 43px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 50%;
 }
 
 .CheckboxRoot {
-  background-color: transparent;
-  width: 15px;
-  height: 15px;
-  border: 3px solid #9747FF ;
-  border-radius: 50%;
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.CheckboxRoot:hover {
-  background-color: rgba($color: #333333, $alpha: 0.5);
-  box-shadow: 0 0 0 8px rgba($color: #333333, $alpha: 0.5);
+.default:hover {
+  background-color: rgba($color: #fff, $alpha: 0.2);
 }
-.CheckboxRoot:focus {
-  background-color: rgba($color: #171717, $alpha: 0.5);
-  box-shadow: 0 0 0 8px rgba($color: #171717, $alpha: 0.5);
+.default:focus {
+  background-color: rgba($color: #fff, $alpha: 0.4);;
 }
-.CheckboxRoot:active {
-  background-color: rgba($color: #9747FF, $alpha: 0.5);
-  box-shadow: 0 0 0 8px rgba($color: #9747FF, $alpha: 0.5);
+.default:active {
+  background-color: rgba($color: #fff, $alpha: 0.4);
 }
 
-.innerCircle{
-  background-color: #9747FF ;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  margin: auto;
+.CheckboxIndicator {
+  margin-top: 5px;
+  color: black;
+  svg {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.Label {
+  color: white;
+  padding-left: 15px;
+  font-size: 15px;
+  line-height: 1;
 }
