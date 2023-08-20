@@ -1,0 +1,42 @@
+
+
+/* reset */
+button {
+  all: unset;
+}
+
+.default{
+  display: flex;
+  align-items: center;
+}
+
+.CheckboxRoot {
+  background-color: transparent;
+  width: 15px;
+  height: 15px;
+  border: 3px solid #9747FF ;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.CheckboxRoot:hover {
+  background-color: rgba($color: #333333, $alpha: 0.5);
+  box-shadow: 0 0 0 8px rgba($color: #333333, $alpha: 0.5);
+}
+.CheckboxRoot:focus {
+  background-color: rgba($color: #171717, $alpha: 0.5);
+  box-shadow: 0 0 0 8px rgba($color: #171717, $alpha: 0.5);
+}
+.CheckboxRoot:active {
+  background-color: rgba($color: #9747FF, $alpha: 0.5);
+  box-shadow: 0 0 0 8px rgba($color: #9747FF, $alpha: 0.5);
+}
+
+.innerCircle{
+  background-color: #9747FF ;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin: auto;
+}
