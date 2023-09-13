@@ -10,7 +10,6 @@ export type AvatarProps = {
 
 
 
-//avatar
 export const Avatar = ({ name, src, size = 36 }: AvatarProps) => {
   return <img className={s.avatar} src={src} alt={`${name} avatar`} width={size} height={size} />
 }
