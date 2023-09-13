@@ -1,61 +1,72 @@
+@mixin typography($fontSize, $lineHeight, $fontWeight) {
+  margin: 0;
+
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  line-height: $lineHeight;
+  color: var(--color-text-primary);
+}
+
 .large {
-  font-weight: 700;
-  font-size: 26px;
+  @include typography(var(--font-size-xxl), var(--line-height-l), var(--font-weight-bold));
 }
 
 .h1 {
-  font-weight: 700;
-  font-size: 20px;
+  @include typography(var(--font-size-xl), var(--line-height-l), var(--font-weight-bold));
 }
 
 .h2 {
-  font-weight: 700;
-  font-size: 18px;
+  @include typography(var(--font-size-l), var(--line-height-m), var(--font-weight-bold));
 }
 
 .h3 {
-  font-weight: 700;
-  font-size: 16px;
+  @include typography(var(--font-size-m), var(--line-height-m), var(--font-weight-bold));
 }
 
 .body1 {
-  font-weight: 400;
-  font-size: 16px;
+  @include typography(var(--font-size-m), var(--line-height-m), var(--font-weight-regular));
 }
 
 .subtitle1 {
-  font-weight: 700;
-  font-size: 16px;
+  @include typography(var(--font-size-m), var(--line-height-m), var(--font-weight-bold));
 }
 
 .body2 {
-  font-weight: 400;
-  font-size: 14px;
+  @include typography(var(--font-size-s), var(--line-height-m), var(--font-weight-regular));
 }
 
 .subtitle2 {
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.caption {
-  font-weight: 400;
-  font-size: 12px;
+  @include typography(var(--font-size-s), var(--line-height-m), var(--font-weight-bold));
 }
 
 .overline {
-  font-weight: 700;
-  font-size: 12px;
+  @include typography(var(--font-size-xs), var(--line-height-s), var(--font-weight-bold));
 }
 
-.link1 {
-  font-weight: 400;
-  font-size: 14px;
-  color: #397DF6;
+.caption {
+  @include typography(var(--font-size-xs), var(--line-height-s), var(--font-weight-regular));
 }
 
-.link2 {
-  font-weight: 400;
-  font-size: 12px;
-  color: #397DF6;
+.link1,
+.link1:visited {
+  @include typography(var(--font-size-s), var(--line-height-m), var(--font-weight-regular));
+
+  cursor: pointer;
+  color: var(--color-text-link);
+  text-decoration: underline;
+}
+
+.link2,
+.link2:visited {
+  @include typography(var(--font-size-xs), var(--line-height-s), var(--font-weight-regular));
+
+  cursor: pointer;
+  color: var(--color-text-link);
+  text-decoration: underline;
+}
+
+.error {
+  @include typography(var(--font-size-xs), var(--line-height-m), var(--font-weight-regular));
+
+  color: var(--color-danger-300);
 }

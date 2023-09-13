@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Typography } from '.'
+import { Typography } from './'
 
 const meta = {
   title: 'Components/Typography',
@@ -13,14 +13,15 @@ const meta = {
         'h1',
         'h2',
         'h3',
-        'link1',
-        'link2',
         'body1',
         'body2',
         'subtitle1',
         'subtitle2',
         'caption',
         'overline',
+        'link1',
+        'link2',
+        'error',
       ],
       control: { type: 'radio' },
     },
@@ -30,48 +31,93 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Body1: Story = {
+export const Large: Story = {
   args: {
-    variant: 'body1',
-    children: 'body1',
+    children: 'Card content',
+    variant: 'large',
   },
 }
 
 export const H1: Story = {
   args: {
+    children: 'Card content',
     variant: 'h1',
-    children: 'h2',
-    as: 'h1',
   },
 }
 
 export const H2: Story = {
   args: {
+    children: 'Card content',
     variant: 'h2',
-    children: 'h2',
-    as: 'h2',
   },
 }
 
 export const H3: Story = {
   args: {
+    children: 'Card content',
     variant: 'h3',
-    children: 'h3',
-    as: 'h3',
   },
 }
 
-export const Aslink1: Story = {
+export const Body1: Story = {
   args: {
-    variant: 'link1',
-    children: 'link1',
-    as: 'a',
+    children: 'Card content',
+    variant: 'body1',
   },
 }
-export const Aslink2: Story = {
+
+export const Body2: Story = {
   args: {
+    children: 'Card content',
+    variant: 'body2',
+  },
+}
+
+export const Subtitle1: Story = {
+  args: {
+    children: 'Card content',
+    variant: 'subtitle1',
+  },
+}
+
+export const Subtitle2: Story = {
+  args: {
+    children: 'Card content',
+    variant: 'subtitle2',
+  },
+}
+
+export const Caption: Story = {
+  args: {
+    children: 'Card content',
+    variant: 'caption',
+  },
+}
+
+export const Overline: Story = {
+  args: {
+    children: 'Card content',
+    variant: 'overline',
+  },
+}
+
+export const Link1: Story = {
+  args: {
+    children: 'Card content',
+    variant: 'link1',
+  },
+}
+
+export const Link2: Story = {
+  args: {
+    children: 'Card content',
     variant: 'link2',
-    children: 'link2',
-    as: 'a',
+  },
+}
+
+export const Error: Story = {
+  args: {
+    children: 'Card content',
+    variant: 'error',
   },
 }
