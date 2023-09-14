@@ -92,7 +92,7 @@ export const Modal: FC<ModalProps> = ({
               <motion.div variants={dropIn} initial="hidden" animate="visible" exit="exit">
                 <header className={classNames.header}>
                   <DialogTitle asChild>
-                    
+                    <h2 className={classNames.title}>{title}</h2>
                   </DialogTitle>
 
                   {showCloseButton && (
