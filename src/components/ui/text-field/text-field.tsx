@@ -34,7 +34,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     const [showPassword, setShowPassword] = useState(false)
 
     const isShowPasswordButtonShown = type === 'password'
-
+  
     const finalType = getFinalType(type, showPassword)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
