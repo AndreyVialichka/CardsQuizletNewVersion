@@ -160,9 +160,9 @@ const MainPaginationButtons: FC<MainPaginationButtonsProps> = ({
 }
 
 export type PerPageSelectProps = {
-  perPage: number
+  perPage?: number
   perPageOptions: number[]
-  onPerPageChange: (itemPerPage: number) => void
+  onPerPageChange?: (itemPerPage: number) => void
 }
 
 export const PerPageSelect: FC<PerPageSelectProps> = ({
@@ -174,7 +174,7 @@ export const PerPageSelect: FC<PerPageSelectProps> = ({
     label: value,
     value,
   }))
-
+  console.log(perPage,onPerPageChange,selectOptions)
   return null
 
   // return (
