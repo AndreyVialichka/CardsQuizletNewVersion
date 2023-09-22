@@ -1,14 +1,28 @@
 import type { Meta, StoryObj } from '@storybook/react'
  
-import { profile } from './profile-form'
+import { Profile } from './profile-form'
  
 const meta = {
   title: 'Auth/profile',
-  component: profile,
+  component: Profile,
   tags: ['autodocs'],
-} satisfies Meta<typeof profile>
+} satisfies Meta<typeof Profile>
  
 export default meta
 type Story = StoryObj<typeof meta>
- 
-export const Primary: Story = {}
+
+export const Default: Story = {
+  args: {
+    email: 'your_email@domain.com',
+    name: 'John Doe',
+    onAvatarChange: () => {
+      console.info('avatar changed')
+    },
+    onNameChange: () => {
+      console.info('name changed')
+    },
+    onLogout: () => {
+      console.info('logout')
+    },
+  },
+}
