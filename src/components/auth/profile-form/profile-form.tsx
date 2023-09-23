@@ -2,24 +2,22 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '../../ui/button'
 import { TextField } from '../../ui/text-field'
-import { ControlledCheckbox } from '../../ui'
 import { z } from 'zod'
 import { DevTool } from '@hookform/devtools'
+import { Avatar } from '../../ui/avatar/avatar'
+import defAvatar from '../../../assets/img/defAvatar.png'
+
 
 const loginSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(3),
-  rememberMe: z.boolean().default(true),
 })
 
 
 type FormValues = {
   email: string
-  password: string
-  rememberMe: boolean
 }
  
-export const LoginForm = () => {
+export const profile = () => {
     const { 
         control, 
         handleSubmit, 
@@ -30,16 +28,16 @@ export const LoginForm = () => {
       })
 
 
-  const onSubmit = (data: FormValues) => {  
+  const onSubmit = (data: FormValues) => {
     console.log(data)
   }
 
+  debugger
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
          <DevTool control={control} />
+         <Avatar src={defAvatar} />
         <TextField {...register('email')} label={'email'} errorMessage={errors.email?.message} />
-        <TextField {...register('password')} label={'password'} errorMessage={errors.password?.message} type='password'/>
-        <ControlledCheckbox label={'remember me'} control={control} name={'rememberMe'} />
         <Button type="submit">Submit</Button>
     </form>
   )
