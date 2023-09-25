@@ -22,16 +22,18 @@ export interface TextProps<T extends ElementType> {
     | 'error'
   children?: ReactNode
   className?: string
+  textPosition? :'left' | 'right' | 'center'
 }
 
 export function Typography<T extends ElementType = 'p'>({
   as,
   className,
   variant = 'body1',
+  textPosition = 'center',
   ...restProps
 }: TextProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof TextProps<T>>) {
   const classNames = clsx(s.text, s[variant], className)
   const Component = as || 'p'
-
-  return <Component className={classNames} {...restProps} />
+  const position = clsx(s.text, s[textPosition], className)
+  return <div className={position}><Component className={classNames} {...restProps} /></div>
 }

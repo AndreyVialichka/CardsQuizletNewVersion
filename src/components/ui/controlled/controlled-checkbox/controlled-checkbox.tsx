@@ -22,7 +22,7 @@ export const ControlledCheckbox = ({
     control,
     defaultValue,
   })
-  debugger
+
   return (
     <Checkbox
       {...{

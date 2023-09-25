@@ -1,39 +1,55 @@
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from '../../ui/button'
-import { TextField } from '../../ui/text-field'
-import { z } from 'zod'
 import { DevTool } from '@hookform/devtools'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
-const loginSchema = z.object({
-  password: z.string().min(3),
+import { Button, Card, ControlledTextField, Typography } from '../../ui'
+
+import s from './createPassword-form.module.scss'
+
+const schema = z.object({
+  password: z.string().nonempty('Enter password'),
 })
 
+type FormType = z.infer<typeof schema>
 
-type FormValues = {
-  password: string
+type Props = {
+  onSubmit: (data: FormType) => void
 }
- 
-export const createPassword = () => {
-    const { 
-        control, 
-        handleSubmit, 
-        register,
-        formState: { errors },
-    } = useForm<FormValues>({
-        resolver: zodResolver(loginSchema),
-      })
 
+export const createPassword = (props: Props) => {
+  const { control, handleSubmit } = useForm<FormType>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      password: '',
+    },
+  })
 
-  const onSubmit = (data: FormValues) => {  
-    console.log(data)
-  }
+  const handleFormSubmitted = handleSubmit(props.onSubmit)
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-         <DevTool control={control} />
-        <TextField {...register('password')} label={'password'} errorMessage={errors.password?.message} type='password'/>
-        <Button type="submit">Submit</Button>
-    </form>
+    <>
+      <DevTool control={control} />
+      <Card className={s.card}>
+        <Typography variant="large" className={s.title}>
+          Create new password
+        </Typography>
+        <form onSubmit={handleFormSubmitted}>
+          <ControlledTextField
+            placeholder={'Password'}
+            name={'password'}
+            control={control}
+            type={'password'}
+            containerProps={{ className: s.input }}
+          />
+          <Typography variant="caption" className={s.instructions}>
+            Create new password and we will send you further instructions to email
+          </Typography>
+          <Button fullWidth type={'submit'}>
+            Create new password
+          </Button>
+        </form>
+      </Card>
+    </>
   )
 }
