@@ -1,58 +1,93 @@
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from '../../ui/button'
-import { TextField } from '../../ui/text-field'
-import { ControlledCheckbox } from '../../ui'
-import { z } from 'zod'
 import { DevTool } from '@hookform/devtools'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
-const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(3),
-  confirmPassword: z.string().min(3), 
-  rememberMe: z.boolean().default(false),
-}).superRefine(({confirmPassword,password}, ctx) => {
-  if(confirmPassword !== password) {
-    ctx.addIssue({
-      code:'custom',
-      message: 'the passwords did not match',
-      path: ['confirmPassword']
-    })
-  }
-})
+import { Button, Card, ControlledTextField, Typography } from '../../ui'
 
+import s from './register-form.module.scss'
 
-type FormValues = {
-  email: string
-  password: string
-  confirmPassword: string
-  rememberMe: boolean
-}
- 
-export const RegisterForm = () => {
-    const { 
-        control, 
-        handleSubmit, 
-        register,
-        formState: { errors },
-    } = useForm<FormValues>({
-        resolver: zodResolver(loginSchema),
+const schema = z
+  .object({
+    email: z.string().email('Invalid email address').nonempty('Enter email'),
+    password: z.string().nonempty('Enter password'),
+    passwordConfirmation: z.string().nonempty('Confirm your password'),
+  })
+  .superRefine((data, ctx) => {
+    if (data.password !== data.passwordConfirmation) {
+      ctx.addIssue({
+        message: 'Passwords do not match',
+        code: z.ZodIssueCode.custom,
+        path: ['passwordConfirmation'],
       })
+    }
 
+    return data
+  })
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data)
-  }
+type FormType = z.infer<typeof schema>
 
-  debugger
+type Props = {
+  onSubmit: (data: Omit<FormType, 'passwordConfirmation'>) => void
+}
+
+export const RegisterForm = (props: Props) => {
+  const { control, handleSubmit } = useForm<FormType>({
+    mode: 'onSubmit',
+    resolver: zodResolver(schema),
+    defaultValues: {
+      email: '',
+      password: '',
+      passwordConfirmation: '',
+    },
+  })
+
+  const handleFormSubmitted = handleSubmit(data =>
+    props.onSubmit(data)
+  )
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-         <DevTool control={control} />
-        <TextField {...register('email')} label={'email'} errorMessage={errors.email?.message} />
-        <TextField {...register('password')} label={'password'} errorMessage={errors.password?.message} type='password'/>
-        <TextField {...register('confirmPassword')} label={' Confirm password'} errorMessage={errors.confirmPassword?.message } type='password'/>
-        <ControlledCheckbox label={'remember me'} control={control} name={'rememberMe'} />
-        <Button type="submit">Submit</Button>
-    </form>
+    <>
+      <DevTool control={control} />
+      <Card className={s.card}>
+        <Typography variant="large" className={s.title}>
+          Sign Up
+        </Typography>
+        <form onSubmit={handleFormSubmitted}>
+          <div className={s.form}>
+            <ControlledTextField
+              label={'Email'}
+              placeholder={'Email'}
+              name={'email'}
+              control={control}
+            />
+            <ControlledTextField
+              placeholder={'Password'}
+              label={'Password'}
+              type={'password'}
+              name={'password'}
+              control={control}
+            />
+            <ControlledTextField
+              placeholder={'Confirm password'}
+              label={'Confirm password'}
+              type={'password'}
+              name={'passwordConfirmation'}
+              control={control}
+            />
+          </div>
+          <Button className={s.button} fullWidth type={'submit'}>
+            Sign Up
+          </Button>
+        </form>
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
+        <Typography variant="body2" className={s.caption}>
+          Already have an account?
+        </Typography>
+        <Typography variant="link1" as={'a'} href ="/sign-in" className={s.signInLink}>
+          Sign In
+        </Typography>
+      </Card>
+    </>
   )
 }

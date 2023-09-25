@@ -7,6 +7,18 @@
   color: var(--color-text-primary);
 }
 
+.right {
+  text-align: right
+}
+
+.center {
+  text-align: center
+}
+
+.left {
+  text-align: left
+}
+
 .large {
   @include typography(var(--font-size-xxl), var(--line-height-l), var(--font-weight-bold));
 }
@@ -50,7 +62,7 @@
 .link1,
 .link1:visited {
   @include typography(var(--font-size-s), var(--line-height-m), var(--font-weight-regular));
-
+  width: fit-content;
   cursor: pointer;
   color: var(--color-text-link);
   text-decoration: underline;

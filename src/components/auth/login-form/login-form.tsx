@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '../../ui/button'
 import { TextField } from '../../ui/text-field'
-import { ControlledCheckbox } from '../../ui'
+import { Card, ControlledCheckbox, Typography } from '../../ui'
 import { z } from 'zod'
 import { DevTool } from '@hookform/devtools'
 
@@ -18,8 +18,14 @@ type FormValues = {
   password: string
   rememberMe: boolean
 }
+
+type propsType = {
+  onSubmit:(data:FormValues) => void
+}
  
-export const LoginForm = () => {
+export const LoginForm = ({
+  onSubmit
+}:propsType) => {
     const { 
         control, 
         handleSubmit, 
@@ -30,17 +36,24 @@ export const LoginForm = () => {
       })
 
 
-  const onSubmit = (data: FormValues) => {  
-    console.log(data)
+  const onSubmitHandler = (data: FormValues) => {  
+    onSubmit(data)
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-         <DevTool control={control} />
+    <Card>
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
+        <DevTool control={control} />
+        <Typography variant='h1'>Sign In</Typography>
         <TextField {...register('email')} label={'email'} errorMessage={errors.email?.message} />
         <TextField {...register('password')} label={'password'} errorMessage={errors.password?.message} type='password'/>
-        <ControlledCheckbox label={'remember me'} control={control} name={'rememberMe'} />
-        <Button type="submit">Submit</Button>
-    </form>
+        <ControlledCheckbox label={'remember me'} control={control} name={'rememberMe'}/>
+        <Typography variant="link1" as="a" href="google.com" textPosition='right' >Forgot Password</Typography>
+        <Button variant="primary" type="submit" fullWidth  >Sign In</Button>
+        
+      </form>
+      <Typography variant='body2'>{`Don't have account`}</Typography>
+      <Typography variant="link1" as="a" href="google.com">Sign Up</Typography>
+    </Card>
   )
 }
