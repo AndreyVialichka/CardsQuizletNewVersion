@@ -1,6 +1,6 @@
-import { Camera, Edit, Logout } from '../../../assets/index'
-import { Button, Card, Typography } from '../../ui'
-import  defAvatar from '../../../assets/img/defAvatar.png'
+import { Camera, Edit, Logout } from '../../assets/index'
+import { Button, Card, Typography } from '../ui'
+import  defAvatar from '../../assets/img/defAvatar.png'
 
 import s from './profile.module.scss'
 
