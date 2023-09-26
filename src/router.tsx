@@ -6,24 +6,19 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 
-import { SignInPage, DecksPage } from './pages'
+import { Decks } from './pages'
 
 const publicRoutes: RouteObject[] = [
   {
-    element: <Outlet />,
-    children: [
-      {
-        path: '/login',
-        element: <SignInPage />,
-      },
-    ],
+    path: '/login',
+    element: <div>login</div>,
   },
 ]
 
 const privateRoutes: RouteObject[] = [
   {
     path: '/',
-    element: <DecksPage />,
+    element: <Decks />,
   },
 ]
 
